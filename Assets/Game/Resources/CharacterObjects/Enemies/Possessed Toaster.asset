@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23b3df020f5992448a59eb425c03e0d, type: 3}
+  m_Name: Possessed Toaster
+  m_EditorClassIdentifier: 
+  _name: 
+  description: Nothing unusual here, folks. Just a haunted toaster. It hungers for
+    the bread (both your money and actual bread...).
+  maxHp: 20
+  attack: 6
+  defense: 5
+  speed: 3
+  spAttack: 6
+  spDefense: 4
+  frontSprite: {fileID: 21300000, guid: 0f37bf3cf5680a64d863b5f155b2a597, type: 3}

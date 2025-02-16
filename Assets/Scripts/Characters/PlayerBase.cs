@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName ="New Player", menuName ="Characters/Player")]
+public class PlayerBase : CharacterBase
+{
+    //Potential player names
+    //Danny Debtworth (Rich in spirit, poor in funds)
+    //Tommy Tappedout (Mentally and financially exhausted)
+    //Timmy Telepay (Can move money with his mind... but only out of his wallet)
+    //Chad stral
+
+    [SerializeField] int mp; //PSY (MP) represent's the player's mental energy used for special attacks
+
+    [SerializeField] Sprite backSprite;
+
+    [SerializeField] List<PlayerLearnableMoves> playerLearnableMoves;
+
+    public int MP { get { return mp; } }
+    public Sprite BackSprite { get { return backSprite;  } }
+
+    public List<PlayerLearnableMoves> PlayerLearnableMoves { get { return playerLearnableMoves; } }
+}
+
+[System.Serializable]
+public class PlayerLearnableMoves
+{
+    [SerializeField] PlayerMoveBase playerMoveBase;
+    [SerializeField] int level; //level that the move will be learned
+
+    public PlayerMoveBase PlayerMoveBase { get { return playerMoveBase; } }
+    public int Level { get { return level; } }
+}
