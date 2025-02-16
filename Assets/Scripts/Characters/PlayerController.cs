@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
-    [SerializeField] bool isMoving;
     private Rigidbody2D rb;
     private Vector2 movement; //Stores x and y
-
+    private CharacterAnimator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<CharacterAnimator>();
     }
 
     private void Update() //<= make into handleupdate later
@@ -25,10 +25,9 @@ public class PlayerController : MonoBehaviour
         if (movement.x != 0) movement.y = 0;
 
         //Update animator movement parameters
-
-
-        //Handle idle direction
-
+        animator.MoveX = movement.x;
+        animator.MoveY = movement.y;
+        animator.IsMoving = movement.magnitude > 0; //When you check the magnitude you're measuring how fast it's moving 
 
     }
 
