@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef7fac9a1334ce4d9ab2f5f8a4ff833, type: 3}
   m_Name: SmokeAlarmDistress
   m_EditorClassIdentifier: 
-  mName: 
-  description: 
+  mName: Smoke Alarm Distress
+  description: The loud screeching of a smoke alarm disorients foes. What a headache...
   power: 0
-  accuracy: 0
-  pp: 0
-  moveType: 0
-  targetType: 0
+  accuracy: 100
+  pp: 6
+  moveType: 2
+  targetType: 1

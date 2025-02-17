@@ -13,12 +13,12 @@ public class PlayerBase : CharacterBase
 
     [SerializeField] int mp; //PSY (MP) represent's the player's mental energy used for special attacks
 
-    [SerializeField] Sprite backSprite;
+    [SerializeField] Sprite frontSprite;
 
     [SerializeField] List<PlayerLearnableMoves> playerLearnableMoves;
 
     public int MP { get { return mp; } }
-    public Sprite BackSprite { get { return backSprite;  } }
+    public Sprite FrontSprite { get { return frontSprite;  } }
 
     public List<PlayerLearnableMoves> PlayerLearnableMoves { get { return playerLearnableMoves; } }
 }

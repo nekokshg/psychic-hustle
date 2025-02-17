@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3597b02c18a62f54cb5a532e71ecf2f7, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Danny
   description: Danny Debtworth (Rich in spirit, poor in funds lol)
-  maxHp: 25
+  maxHp: 20
   attack: 6
   defense: 5
   speed: 5
   spAttack: 9
   spDefense: 6
-  psy: 0
-  backSprite: {fileID: 21300000, guid: 42b5783bef25f9843a4ed24e13f967bd, type: 3}
+  mp: 10
+  frontSprite: {fileID: 7152930139536384079, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  playerLearnableMoves: []

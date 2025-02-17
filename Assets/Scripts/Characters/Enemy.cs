@@ -5,21 +5,21 @@ using UnityEngine;
 //In charge of calculating all the values specific to a level for a Enemy Scriptable Object
 public class Enemy
 {
-    EnemyBase enemyBase;
-    int level;
+    public EnemyBase EnemyBase { get; set; }
+    public int Level { get; set; }
     public int HP { get; set; }
     public List<EnemyMove> EnemyMoves { get; set; } //The list of all moves that each enemy has 
 
     public Enemy(EnemyBase eBase, int eLevel)
     {
-        enemyBase = eBase;
-        level = eLevel;
-        HP = eBase.MaxHp;
+        EnemyBase = eBase;
+        Level = eLevel;
+        HP = MaxHp;
 
         EnemyMoves = new List<EnemyMove>();
-        foreach (var move in enemyBase.EnemyLearnableMoves)
+        foreach (var move in EnemyBase.EnemyLearnableMoves)
         {
-            if (move.Level <= level)
+            if (move.Level <= Level)
             {
                 EnemyMoves.Add(new EnemyMove(move.EnemyMoveBase));
             }
@@ -28,10 +28,10 @@ public class Enemy
     }
 
     //Initial Stat Growth Formula (Linear Growth): Base Stat + (Level * Growth Factor)
-    public int MaxHp { get { return enemyBase.MaxHp + (level * 4); } }
-    public int Attack { get { return enemyBase.Attack + (level * 2); } }
-    public int Defense { get { return enemyBase.Defense + Mathf.FloorToInt(level * 1.5f); } }
-    public int SpAttack { get { return enemyBase.SpAttack + Mathf.FloorToInt(level * 2.5f); } }
-    public int SpDefense { get { return enemyBase.SpDefense + Mathf.FloorToInt(level * 1.8f); } }
-    public int Speed { get { return enemyBase.Speed + Mathf.FloorToInt(level * 1.2f); } }
+    public int MaxHp { get { return EnemyBase.MaxHp + (Level * 4); } }
+    public int Attack { get { return EnemyBase.Attack + (Level * 2); } }
+    public int Defense { get { return EnemyBase.Defense + Mathf.FloorToInt(Level * 1.5f); } }
+    public int SpAttack { get { return EnemyBase.SpAttack + Mathf.FloorToInt(Level * 2.5f); } }
+    public int SpDefense { get { return EnemyBase.SpDefense + Mathf.FloorToInt(Level * 1.8f); } }
+    public int Speed { get { return EnemyBase.Speed + Mathf.FloorToInt(Level * 1.2f); } }
 }

@@ -5,23 +5,26 @@ using UnityEngine;
 //In charge of calculating all the values specific to a level for Player Scriptable Objects
 public class Player
 {
-    PlayerBase playerBase;
-    int level;
+    public PlayerBase PlayerBase { get; set; }
+    public int Level { get; set; }
     public int HP { get; set; } //represents current hp
+
+    public int MP { get; set; }
 
     public List<PlayerMove> PlayerMoves { get; set; } //The list of all moves that a player has
 
     public Player(PlayerBase pBase, int pLevel)
     {
-        playerBase = pBase;
-        level = pLevel;
-        HP = pBase.MaxHp;
+        PlayerBase = pBase;
+        Level = pLevel;
+        HP = MaxHp;
+        MP = MaxMp;
 
         PlayerMoves = new List<PlayerMove>();
         //Loop through learnable moves and add it to Moves depending on the level
-        foreach (var move in playerBase.PlayerLearnableMoves)
+        foreach (var move in PlayerBase.PlayerLearnableMoves)
         {
-            if (move.Level <= level)
+            if (move.Level <= Level)
             {
                 PlayerMoves.Add(new PlayerMove(move.PlayerMoveBase));
             }
@@ -40,12 +43,12 @@ public class Player
      */
 
     //Initial Stat Growth Formula (Exponential Growth) : New Stat = min(Cap, Base Stat * (1 + Growth Rate)^(Level))
-    public int MaxHp { get { return Mathf.Min(300, Mathf.FloorToInt(playerBase.MaxHp * Mathf.Pow(1.04f, level))); } }
-    public int Mp { get { return Mathf.Min(150, Mathf.FloorToInt(playerBase.MP * Mathf.Pow(1.04f, level))); } }
-    public int Attack { get { return Mathf.Min(100, Mathf.FloorToInt(playerBase.Attack * Mathf.Pow(1.04f, level))); } }
-    public int Defense { get { return Mathf.Min(150, Mathf.FloorToInt(playerBase.Defense * Mathf.Pow(1.03f, level))); } }
-    public int SpAttack { get { return Mathf.Min(120, Mathf.FloorToInt(playerBase.SpAttack * Mathf.Pow(1.045f, level))); } }
-    public int SpDefense { get { return Mathf.Min(150, Mathf.FloorToInt(playerBase.SpDefense * Mathf.Pow(1.035f, level))); } }
-    public int Speed { get { return Mathf.Min(75, Mathf.FloorToInt(playerBase.Speed * Mathf.Pow(1.03f, level))); } }
+    public int MaxHp { get { return Mathf.Min(300, Mathf.FloorToInt(PlayerBase.MaxHp * Mathf.Pow(1.04f, Level))); } }
+    public int MaxMp { get { return Mathf.Min(150, Mathf.FloorToInt(PlayerBase.MP * Mathf.Pow(1.04f, Level))); } }
+    public int Attack { get { return Mathf.Min(100, Mathf.FloorToInt(PlayerBase.Attack * Mathf.Pow(1.04f, Level))); } }
+    public int Defense { get { return Mathf.Min(150, Mathf.FloorToInt(PlayerBase.Defense * Mathf.Pow(1.03f, Level))); } }
+    public int SpAttack { get { return Mathf.Min(120, Mathf.FloorToInt(PlayerBase.SpAttack * Mathf.Pow(1.045f, Level))); } }
+    public int SpDefense { get { return Mathf.Min(150, Mathf.FloorToInt(PlayerBase.SpDefense * Mathf.Pow(1.035f, Level))); } }
+    public int Speed { get { return Mathf.Min(75, Mathf.FloorToInt(PlayerBase.Speed * Mathf.Pow(1.03f, Level))); } }
 
 }
