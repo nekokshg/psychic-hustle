@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 4b8b6386a3ed9534ba5ba611634ce86b
+guid: b42ff9d33ae0ef64eb453e6c15313074
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -1
+  fontSize: 8
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Orange Kid
+  - Nokia Cellphone FC
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 2
