@@ -21,5 +21,8 @@ MonoBehaviour:
   speed: 3
   spAttack: 6
   spDefense: 4
-  frontSprite: {fileID: 21300000, guid: 0f37bf3cf5680a64d863b5f155b2a597, type: 3}
-  enemyLearnableMoves: []
+  frontSprite: {fileID: 21300000, guid: 1ee91d0a29932d34d93245ac25aeb0ec, type: 3}
+  enemyLearnableMoves:
+  - enemyMoveBase: {fileID: 11400000, guid: f28f7871fdcd4a642bb4a07683bccbb2, type: 2}
+    level: 1
+  isSmall: 1

@@ -17,6 +17,7 @@ public class Player
     {
         PlayerBase = pBase;
         Level = pLevel;
+
         HP = MaxHp;
         MP = MaxMp;
 
@@ -51,4 +52,19 @@ public class Player
     public int SpDefense { get { return Mathf.Min(150, Mathf.FloorToInt(PlayerBase.SpDefense * Mathf.Pow(1.035f, Level))); } }
     public int Speed { get { return Mathf.Min(75, Mathf.FloorToInt(PlayerBase.Speed * Mathf.Pow(1.03f, Level))); } }
 
+    public bool TakeDamage(EnemyMove move, Enemy attacker) //<= Note: enemies can take money from player factor that in later
+    {
+        float modifiers = Random.Range(0.85f, 1f);
+        float a = (2 * attacker.Level + 10) / 250f;
+        float d = a * move.EMBase.Power * ((float)attacker.Attack / Defense) + 2;
+        int damage = Mathf.FloorToInt(d * modifiers);
+
+        HP -= damage;
+        if (HP <= 0) 
+        {
+            HP = 0;
+            return true;
+        }
+        return false;
+    }
 }

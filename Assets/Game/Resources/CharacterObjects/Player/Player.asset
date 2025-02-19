@@ -21,5 +21,8 @@ MonoBehaviour:
   spAttack: 9
   spDefense: 6
   mp: 10
-  frontSprite: {fileID: 7152930139536384079, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
-  playerLearnableMoves: []
+  money: 20
+  frontSprite: {fileID: -1057648517, guid: 50dd43be5a2897d40814cf48a7b8276d, type: 3}
+  playerLearnableMoves:
+  - playerMoveBase: {fileID: 11400000, guid: bb90b044fbd1d4a4e821b3bf67d6ade3, type: 2}
+    level: 1

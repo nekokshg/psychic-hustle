@@ -6,13 +6,27 @@ using UnityEngine;
 public class PlayerBattleHud : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] TextMeshProUGUI HPText;
-    [SerializeField] TextMeshProUGUI MPText;
+    [SerializeField] TextMeshProUGUI HPVal;
+    [SerializeField] TextMeshProUGUI MPVal;
+    [SerializeField] TextMeshProUGUI levelVal;
 
+    Player _player;
     public void SetData(Player player)
     {
+        _player = player;
         nameText.text = player.PlayerBase.Name;
-        HPText.text = "HP: " + player.HP;
-        MPText.text = "MP: " + player.MP;
+        levelVal.text = (player.Level).ToString();
+        HPVal.text = (player.HP).ToString();
+        MPVal.text = (player.MP).ToString();
+    }
+
+    public void UpdateHP()
+    {
+        HPVal.text = (_player.HP).ToString();
+    }
+
+    public void UpdateMP()
+    {
+        MPVal.text = (_player.MP).ToString();
     }
 }

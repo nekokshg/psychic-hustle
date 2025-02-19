@@ -19,3 +19,4 @@ MonoBehaviour:
   pp: 12
   moveType: 0
   targetType: 0
+  moneyToTake: 20

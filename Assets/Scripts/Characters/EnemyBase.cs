@@ -7,9 +7,12 @@ public class EnemyBase : CharacterBase
 {
     [SerializeField] Sprite frontSprite;
     [SerializeField] List<EnemyLearnableMoves> enemyLearnableMoves;
+    [SerializeField] bool isSmall;
 
     public Sprite FrontSprite { get { return frontSprite; } }
     public List<EnemyLearnableMoves> EnemyLearnableMoves { get { return enemyLearnableMoves; } }
+
+    public bool IsSmall { get { return isSmall; } }
 }
 
 [System.Serializable]

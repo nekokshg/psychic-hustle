@@ -9,10 +9,13 @@ public class PlayerMove
     public int PP { get; set; }
     public int MP { get; set; }
 
+    public float Money { get; set; }
+
     public PlayerMove(PlayerMoveBase pBase)
     {
         PMBase = pBase;
         PP = pBase.Pp;
         MP = pBase.MPCost;
+        Money = pBase.MoneyCost;
     }
 }
