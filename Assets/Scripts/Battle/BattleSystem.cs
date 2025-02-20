@@ -55,7 +55,10 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.Busy;
         var move = playerUnit.Player.PlayerMoves[currentMove];
         yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} used {move.PMBase.MName}");
+        playerUnit.PlayerAttackAnimation();
+        yield return new WaitForSeconds(1f);
 
+        enemyUnit.EnemyHitAnimation();
         var damageDetails = enemyUnit.Enemy.TakeDamage(move, playerUnit.Player);
         playerHud.UpdateMP();
         yield return enemyHud.UpdateHP();
@@ -64,6 +67,7 @@ public class BattleSystem : MonoBehaviour
         if (damageDetails.Fainted)
         {
             yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} got cleansed by the power of your spiritual energy lol");
+            enemyUnit.EnemyFaintAnimation();
         } else
         {
             StartCoroutine(PerformEnemyMove());
@@ -75,7 +79,10 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.EnemyMove;
         var move = enemyUnit.Enemy.GetRandomMove();
         yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} used {move.EMBase.MName}");
+        enemyUnit.EnemyAttackAnimation();
+        yield return new WaitForSeconds(1f);
 
+        playerUnit.PlayerHitAnimation();
         var damageDetails = playerUnit.Player.TakeDamage(move, enemyUnit.Enemy);
         playerHud.UpdateHP();
         yield return ShowPlayerDamageDetails(damageDetails);
@@ -83,6 +90,7 @@ public class BattleSystem : MonoBehaviour
         if (damageDetails.Fainted)
         {
             yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} got defeated...");
+            playerUnit.PlayerFaintAnimation();
         }
         else
         {
