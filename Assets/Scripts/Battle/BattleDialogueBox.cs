@@ -36,6 +36,8 @@ public class BattleDialogueBox : MonoBehaviour
             //yield return new WaitForSeconds(1f / 30); //Wait for 30th of a second after adding a letter; 1 second will show 30 letters
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
+
+        yield return new WaitForSeconds(1f);
     }
 
     public void EnableDialogueText(bool enabled) //<= add speaker game object enable code later

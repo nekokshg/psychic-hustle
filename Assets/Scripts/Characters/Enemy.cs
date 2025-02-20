@@ -35,9 +35,18 @@ public class Enemy
     public int SpDefense { get { return EnemyBase.SpDefense + Mathf.FloorToInt(Level * 1.8f); } }
     public int Speed { get { return EnemyBase.Speed + Mathf.FloorToInt(Level * 1.2f); } }
 
-    public bool TakeDamage(PlayerMove move, Player attacker)
+    public EnemyDamageDetails TakeDamage(PlayerMove move, Player attacker)
     {
-        float modifiers = Random.Range(0.85f, 1f);
+        float critical = 1f;
+        if (Random.value * 100f <= 6.25) critical = 2f;
+
+        var enemyDamageDetails = new EnemyDamageDetails()
+        {
+            Critical = critical,
+            Fainted = false,
+        };
+
+        float modifiers = Random.Range(0.85f, 1f) * critical;
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.PMBase.Power * ((float)attacker.Attack / Defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
@@ -46,9 +55,9 @@ public class Enemy
         if (HP <= 0)
         {
             HP = 0;
-            return true;
+            enemyDamageDetails.Fainted= true;
         }
-        return false;
+        return enemyDamageDetails;
     }
 
     public EnemyMove GetRandomMove()
@@ -56,4 +65,9 @@ public class Enemy
         int r = Random.Range(0, EnemyMoves.Count);
         return EnemyMoves[r];
     }
+}
+public class EnemyDamageDetails
+{
+    public bool Fainted { get; set; }
+    public float Critical { get; set; }
 }

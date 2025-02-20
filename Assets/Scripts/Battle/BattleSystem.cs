@@ -31,7 +31,6 @@ public class BattleSystem : MonoBehaviour
         dialogueBox.SetMoveNames(playerUnit.Player.PlayerMoves);
 
         yield return dialogueBox.TypeDialogue($"You are now being harassed by a {enemyUnit.Enemy.EnemyBase.Name}");
-        yield return new WaitForSeconds(1f);
         PlayerAction();
     }
 
@@ -56,13 +55,13 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.Busy;
         var move = playerUnit.Player.PlayerMoves[currentMove];
         yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} used {move.PMBase.MName}");
-        yield return new WaitForSeconds(1f);
 
-        bool isFainted = enemyUnit.Enemy.TakeDamage(move, playerUnit.Player);
+        var damageDetails = enemyUnit.Enemy.TakeDamage(move, playerUnit.Player);
         playerHud.UpdateMP();
         yield return enemyHud.UpdateHP();
+        yield return ShowEnemyDamageDetails(damageDetails);
 
-        if (isFainted)
+        if (damageDetails.Fainted)
         {
             yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} got cleansed by the power of your spiritual energy lol");
         } else
@@ -76,18 +75,34 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.EnemyMove;
         var move = enemyUnit.Enemy.GetRandomMove();
         yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} used {move.EMBase.MName}");
-        yield return new WaitForSeconds(1f);
 
-        bool isFainted = playerUnit.Player.TakeDamage(move, enemyUnit.Enemy);
+        var damageDetails = playerUnit.Player.TakeDamage(move, enemyUnit.Enemy);
         playerHud.UpdateHP();
+        yield return ShowPlayerDamageDetails(damageDetails);
         //UPDATE MONEY TOO FROM HERE (e.g. enemies can take player money) do later
-        if (isFainted)
+        if (damageDetails.Fainted)
         {
             yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} got defeated...");
         }
         else
         {
             PlayerAction();
+        }
+    }
+
+    IEnumerator ShowPlayerDamageDetails(PlayerDamageDetails damageDetails)
+    {
+        if (damageDetails.Critical > 1f)
+        {
+            yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} performed a critical hit!!");
+        }
+    }
+
+    IEnumerator ShowEnemyDamageDetails(EnemyDamageDetails damageDetails)
+    {
+        if (damageDetails.Critical > 1f)
+        {
+            yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} performed a critical hit!!");
         }
     }
 

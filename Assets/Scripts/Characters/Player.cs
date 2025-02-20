@@ -8,7 +8,6 @@ public class Player
     public PlayerBase PlayerBase { get; set; }
     public int Level { get; set; }
     public int HP { get; set; } //represents current hp
-
     public int MP { get; set; }
 
     public List<PlayerMove> PlayerMoves { get; set; } //The list of all moves that a player has
@@ -52,9 +51,18 @@ public class Player
     public int SpDefense { get { return Mathf.Min(150, Mathf.FloorToInt(PlayerBase.SpDefense * Mathf.Pow(1.035f, Level))); } }
     public int Speed { get { return Mathf.Min(75, Mathf.FloorToInt(PlayerBase.Speed * Mathf.Pow(1.03f, Level))); } }
 
-    public bool TakeDamage(EnemyMove move, Enemy attacker) //<= Note: enemies can take money from player factor that in later
+    public PlayerDamageDetails TakeDamage(EnemyMove move, Enemy attacker) //<= Note: enemies can take money from player factor that in later
     {
-        float modifiers = Random.Range(0.85f, 1f);
+        float critical = 1f;
+        if (Random.value * 100f <= 6.25) critical = 2f;
+
+        var playerDamageDetails = new PlayerDamageDetails()
+        {
+            Critical = critical,
+            Fainted = false,
+        };
+
+        float modifiers = Random.Range(0.85f, 1f) * critical;
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.EMBase.Power * ((float)attacker.Attack / Defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
@@ -63,8 +71,14 @@ public class Player
         if (HP <= 0) 
         {
             HP = 0;
-            return true;
+            playerDamageDetails.Fainted= true;
         }
-        return false;
+        return playerDamageDetails;
     }
 }
+
+public class PlayerDamageDetails
+{
+    public bool Fainted { get; set; }
+    public float Critical { get; set; }
+} 
