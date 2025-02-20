@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
+    [SerializeField] LayerMask randomEncounterLayer;
+    [SerializeField] float encounterCheckInterval;
+    private float encounterTimer = 0f;
     private Rigidbody2D rb;
     private Vector2 movement; //Stores x and y
     private CharacterAnimator animator;
@@ -29,11 +32,30 @@ public class PlayerController : MonoBehaviour
         animator.MoveY = movement.y;
         animator.IsMoving = movement.magnitude > 0; //When you check the magnitude you're measuring how fast it's moving 
 
+        //Update tiemr and check for encounters periodically
+        encounterTimer += Time.deltaTime;
+        if (encounterTimer >= encounterCheckInterval)
+        {
+            CheckForEncounters();
+            encounterTimer = 0f;
+        }
     }
 
     private void FixedUpdate() //Similar to Update() except executed on a fixed timer
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime); //Move the rigid body and make sure it collides with anything on the way
+
+    }
+
+    private void CheckForEncounters()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, randomEncounterLayer) != null)
+        {
+            if (Random.Range(1, 101) <= 10) // 10% chance
+            {
+                Debug.Log("Encountered a haunted object");
+            }
+        }
     }
 
 
