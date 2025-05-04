@@ -28,5 +28,4 @@ public class MoveBase : ScriptableObject
     public TargetType TargetType { get { return targetType; } }
 }
 
-public enum MoveType { Physical, Special, Status }
 public enum TargetType { Single, AoE, Self } //Note: AoE is area of effect

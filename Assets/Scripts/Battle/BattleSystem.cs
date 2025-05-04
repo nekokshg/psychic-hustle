@@ -83,7 +83,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PerformEnemyMove()
     {
         state = BattleState.EnemyMove;
-        var move = enemyUnit.Enemy.GetRandomMove();
+        var move = enemyUnit.Enemy.GetRandomMove(); //Fix later use greedy algo (maybe)
         yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} used {move.EMBase.MName}");
         enemyUnit.EnemyAttackAnimation();
         yield return new WaitForSeconds(1f);
@@ -113,6 +113,18 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} performed a critical hit!!");
         }
+        if (damageDetails.TypeEffectiveness == 2f)
+        {
+            yield return dialogueBox.TypeDialogue("It's super effective!");
+        }
+        else if (damageDetails.TypeEffectiveness == 1.5f)
+        {
+            yield return dialogueBox.TypeDialogue("It's mildly effective");
+        }
+        else if (damageDetails.TypeEffectiveness == 0.5f)
+        {
+            yield return dialogueBox.TypeDialogue("It's not very effective");
+        }
     }
 
     IEnumerator ShowEnemyDamageDetails(EnemyDamageDetails damageDetails)
@@ -120,6 +132,22 @@ public class BattleSystem : MonoBehaviour
         if (damageDetails.Critical > 1f)
         {
             yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} performed a critical hit!!");
+        }
+        if (damageDetails.Critical > 1f)
+        {
+            yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} performed a critical hit!!");
+        }
+        if (damageDetails.TypeEffectiveness == 2f)
+        {
+            yield return dialogueBox.TypeDialogue("It's super effective!");
+        }
+        else if (damageDetails.TypeEffectiveness == 1.5f)
+        {
+            yield return dialogueBox.TypeDialogue("It's mildly effective");
+        }
+        else if (damageDetails.TypeEffectiveness == 0.5f)
+        {
+            yield return dialogueBox.TypeDialogue("It's not very effective");
         }
     }
 

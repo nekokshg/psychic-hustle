@@ -37,11 +37,14 @@ public class Enemy
 
     public EnemyDamageDetails TakeDamage(PlayerMove move, Player attacker)
     {
+        float type = TypeChart.GetEffectiveness(move.PMBase.MoveType, this.EnemyBase.CharacterType);
+
         float critical = 1f;
         if (Random.value * 100f <= 6.25) critical = 2f;
 
         var enemyDamageDetails = new EnemyDamageDetails()
         {
+            TypeEffectiveness= type,
             Critical = critical,
             Fainted = false,
         };
@@ -70,4 +73,6 @@ public class EnemyDamageDetails
 {
     public bool Fainted { get; set; }
     public float Critical { get; set; }
+
+    public float TypeEffectiveness { get; set; }
 }

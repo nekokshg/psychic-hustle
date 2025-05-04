@@ -8,7 +8,6 @@ public class PlayerMove
     public PlayerMoveBase PMBase { get; set; }
     public int PP { get; set; }
     public int MP { get; set; }
-
     public float Money { get; set; }
 
     public PlayerMove(PlayerMoveBase pBase)

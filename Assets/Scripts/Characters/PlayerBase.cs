@@ -20,7 +20,6 @@ public class PlayerBase : CharacterBase
     [SerializeField] List<PlayerLearnableMoves> playerLearnableMoves;
 
     public int MP { get { return mp; } }
-
     public float Money { get { return money; } }
     public Sprite FrontSprite { get { return frontSprite;  } }
 

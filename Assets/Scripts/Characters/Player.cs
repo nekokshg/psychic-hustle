@@ -53,16 +53,19 @@ public class Player
 
     public PlayerDamageDetails TakeDamage(EnemyMove move, Enemy attacker) //<= Note: enemies can take money from player factor that in later
     {
+        float type = TypeChart.GetEffectiveness(move.EMBase.MoveType, this.PlayerBase.CharacterType);
+
         float critical = 1f;
         if (Random.value * 100f <= 6.25) critical = 2f;
 
         var playerDamageDetails = new PlayerDamageDetails()
         {
+            TypeEffectiveness = type,
             Critical = critical,
             Fainted = false,
         };
 
-        float modifiers = Random.Range(0.85f, 1f) * critical;
+        float modifiers = Random.Range(0.85f, 1f) * critical * type;
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.EMBase.Power * ((float)attacker.Attack / Defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
@@ -81,4 +84,6 @@ public class PlayerDamageDetails
 {
     public bool Fainted { get; set; }
     public float Critical { get; set; }
+
+    public float TypeEffectiveness { get; set; }
 } 

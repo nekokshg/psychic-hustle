@@ -17,6 +17,8 @@ public class CharacterBase : ScriptableObject
     [SerializeField] int spAttack; //Special Attack, used for special attacks; e.g. astral flick, loose change barrage
     [SerializeField] int spDefense; //Special Defense, used for resisting mind-affecting effects; e.g. confusion, possession, etc...
 
+    [SerializeField] CharacterType characterType;
+
     //Properties
     public string Name { get { return _name; } }
     public string Description { get { return description; } }
@@ -26,4 +28,6 @@ public class CharacterBase : ScriptableObject
     public int Speed { get { return speed; } }
     public int SpAttack { get { return spAttack; } }
     public int SpDefense { get { return spDefense; } }
+
+    public CharacterType CharacterType { get {return characterType;} }
 }
