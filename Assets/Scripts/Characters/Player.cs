@@ -65,9 +65,11 @@ public class Player
             Fainted = false,
         };
 
+        float attack = (move.EMBase.IsSpecial) ? attacker.SpAttack : attacker.Attack;
+        float defense = (move.EMBase.IsSpecial) ? SpDefense : Defense;
         float modifiers = Random.Range(0.85f, 1f) * critical * type;
         float a = (2 * attacker.Level + 10) / 250f;
-        float d = a * move.EMBase.Power * ((float)attacker.Attack / Defense) + 2;
+        float d = a * move.EMBase.Power * ((float)attack / defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
 
         HP -= damage;

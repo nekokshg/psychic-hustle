@@ -26,6 +26,23 @@ public class MoveBase : ScriptableObject
     public MoveType MoveType { get { return moveType; } }
 
     public TargetType TargetType { get { return targetType; } }
+
+    public bool IsSpecial
+    {
+        get
+        {
+            if (MoveType == MoveType.Psychic || 
+                MoveType == MoveType.Wit ||
+                MoveType == MoveType.Cursed ||
+                MoveType == MoveType.Weird)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+    }
 }
 
 public enum TargetType { Single, AoE, Self } //Note: AoE is area of effect

@@ -1,6 +1,12 @@
 public enum MoveType
 {
-    Physical, //Punches, physical contact moves
+    //Physical Attacks
+    Brawl, //Close-range melee attacks like punches, kicks, or slams
+    Loud, //Shouts, claps, mic-drops; sound attacks
+    Gesture, //Socially dramatic body language
+    Throw, //Ranged physical attacks using junk or objects
+
+    //Special Attacks
     Psychic, //Mind blasts, telepathy, mind powered moves
     Wit, //Sarcasm, guilt trips, mental manipulation moves
     Cursed, //Haunted energy, rituals, dark hexes

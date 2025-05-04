@@ -57,6 +57,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.Busy;
         var move = playerUnit.Player.PlayerMoves[currentMove];
+        move.PP--;
         yield return dialogueBox.TypeDialogue($"{playerUnit.Player.PlayerBase.Name} used {move.PMBase.MName}");
         playerUnit.PlayerAttackAnimation();
         yield return new WaitForSeconds(1f);
@@ -84,6 +85,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.EnemyMove;
         var move = enemyUnit.Enemy.GetRandomMove(); //Fix later use greedy algo (maybe)
+        move.PP--;
         yield return dialogueBox.TypeDialogue($"{enemyUnit.Enemy.EnemyBase.Name} used {move.EMBase.MName}");
         enemyUnit.EnemyAttackAnimation();
         yield return new WaitForSeconds(1f);
